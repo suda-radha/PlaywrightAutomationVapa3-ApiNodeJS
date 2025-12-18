@@ -45,7 +45,7 @@ app.delete('/resource/:id', (req, res) => {
     delete resources[resourceId];
     res.status(200).json({ message: 'Resource deleted'});
   }else{
-    res.status(404).json({ message: 'Resource not found' });
+    res.status(404).json({ error: 'Resource not found' });
   }
 })
 

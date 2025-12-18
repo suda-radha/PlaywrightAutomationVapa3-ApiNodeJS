@@ -28,4 +28,19 @@ describe('API Tests', () => {
         expect(res.body).to.have.property('id');
     })
 
-});
+    it("should delete a resource by ID", async () => {
+        const resourceIdToDelete = 1;
+        const res = await request(app)
+            .delete(`/resource/${resourceIdToDelete}`)
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('message', 'Resource deleted');
+    })
+
+    it("should return 404 when deleting not delete a resource", async () => {
+        const resourceIdToDelete = 80;
+        const res = await request(app)
+            .delete(`/resource/${resourceIdToDelete}`)
+        expect(res.status).to.equal(404);
+        expect(res.body).to.have.property('message', 'Resource not found');
+    })
+})

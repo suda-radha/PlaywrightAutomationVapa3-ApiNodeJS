@@ -27,19 +27,27 @@ app.get('/resources', (req, res) => {
 
 app.post('/resource', (req, res) => {
   const newResource = req.body;
-
   const resourceId = resources.length + 1;
-
   const resourceWithId = {
     id: resourceId,
     ...newResource
   };
-
   resources.push(resourceWithId);
-
   res.status(201).json(resourceWithId);
 });
 
+//delete /resource/:id - Delete a resource by ID
+app.delete('/resource/:id', (req, res) => {
+ 
+  const resourceId = req.params.id
+
+  if(resources[resourceId]){
+    delete resources[resourceId];
+    res.status(200).json({ message: 'Resource deleted'});
+  }else{
+    res.status(404).json({ message: 'Resource not found' });
+  }
+})
 
 // Start the server
 app.listen(port, () => {

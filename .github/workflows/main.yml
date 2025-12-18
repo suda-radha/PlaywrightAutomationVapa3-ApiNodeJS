@@ -19,5 +19,9 @@ jobs:
               run: mkdir -p reports
 
             - name: Run tests
-              run: npx mocha --reporter mochawesome --reporter-options reportDir=reports, reportFilename=report --exit
-
+              #run: npx mocha --reporter mochawesome --reporter-options reportDir=reports, reportFilename=report --exit
+              run: |
+                ./node_modules/.bin/mocha \
+                  --reporter mochawesome \
+                  --reporter-options reportDir=reports,reportFilename=report \
+                  --exit

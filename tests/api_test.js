@@ -19,4 +19,13 @@ describe('API Tests', () => {
         expect(res.body[0]).to.have.property('type', 'Type A');
     })
 
+    it("should create a new resource", async () => {
+        const newResource = { name: 'Resource three', type: 'Type C' };
+        const res = await request(app)
+            .post('/resource')
+            .send(newResource)
+        expect(res.status).to.equal(201);
+        expect(res.body).to.have.property('id');
+    })
+
 });

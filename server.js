@@ -16,6 +16,29 @@ app.get('/resources', (req, res) => {
   res.status(200).json(resources);
 });
 
+//POST /resources - Create a new resource Ex: { id: 3, name: 'Resource Three', type: 'Type C' }
+// app.post('/resource', (req, res) => {
+//   const newResource = req.body;
+//   const resourceId = Object.keys(resources).length+1;
+//   resources[resourceId] = newResource
+//   //resources.push(newResource);
+//   res.status(201).json({id:resourceId})
+// });
+
+app.post('/resource', (req, res) => {
+  const newResource = req.body;
+
+  const resourceId = resources.length + 1;
+
+  const resourceWithId = {
+    id: resourceId,
+    ...newResource
+  };
+
+  resources.push(resourceWithId);
+
+  res.status(201).json(resourceWithId);
+});
 
 
 // Start the server

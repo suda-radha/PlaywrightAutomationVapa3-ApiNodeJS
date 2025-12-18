@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-12-18T00:14:42.791Z",
+    "end": "2025-12-18T00:14:42.831Z",
+    "duration": 40,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "53db7732-c8e0-435d-affb-34982af63dd1",
+      "title": "",
+      "fullFile": "C:\\Suda_files_2024_lenovo\\Learnings\\PlayWright\\PlaywrightAutomationVapa3-ApiNodeJS\\tests\\api_test.js",
+      "file": "\\tests\\api_test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b1158194-a4b8-435d-b66a-c86140cad650",
+          "title": "API Tests",
+          "fullFile": "C:\\Suda_files_2024_lenovo\\Learnings\\PlayWright\\PlaywrightAutomationVapa3-ApiNodeJS\\tests\\api_test.js",
+          "file": "\\tests\\api_test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"API Tests\"",
+              "fullTitle": "API Tests \"before all\" hook in \"API Tests\"",
+              "timedOut": false,
+              "duration": 7,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "({expect} = await import('chai'))",
+              "err": {},
+              "uuid": "cfd64e9e-095c-4e01-9779-5237efc45c14",
+              "parentUUID": "b1158194-a4b8-435d-b66a-c86140cad650",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should retrieve all resources",
+              "fullTitle": "API Tests should retrieve all resources",
+              "timedOut": false,
+              "duration": 17,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const res = await request(app)\n    .get('/resources')\n    .set('Accept', 'application/json');\nexpect(res.status).to.equal(200);\nexpect(res.body).to.be.an('array');\nexpect(res.body.length).to.equal(2);\nexpect(res.body[0]).to.have.property('id', 1);\nexpect(res.body[0]).to.have.property('name', 'Resource One');\nexpect(res.body[0]).to.have.property('type', 'Type A');",
+              "err": {},
+              "uuid": "a954de56-02b5-445a-8d13-98b960041ab8",
+              "parentUUID": "b1158194-a4b8-435d-b66a-c86140cad650",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should create a new resource",
+              "fullTitle": "API Tests should create a new resource",
+              "timedOut": false,
+              "duration": 11,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const newResource = { name: 'Resource Four', type: 'Type D' };\nconst res = await request(app)\n    .post('/resource')\n    .send(newResource)\nexpect(res.status).to.equal(201);\nexpect(res.body).to.have.property('id');",
+              "err": {},
+              "uuid": "b00345f7-67ff-4c89-b72d-31bf5dc32fca",
+              "parentUUID": "b1158194-a4b8-435d-b66a-c86140cad650",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a954de56-02b5-445a-8d13-98b960041ab8",
+            "b00345f7-67ff-4c89-b72d-31bf5dc32fca"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 28,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.5"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir ": " mochawesome-reports",
+        "reportFilename ": " report",
+        "overwrite ": " true",
+        "html ": " true",
+        "json ": " true"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

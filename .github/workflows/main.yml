@@ -21,7 +21,7 @@ jobs:
             - name: Run tests
               #run: npx mocha --reporter mochawesome --reporter-options reportDir=reports, reportFilename=report --exit
               run: |
-                ./node_modules/.bin/mocha \
-                  --reporter mochawesome \
-                  --reporter-options reportDir=reports,reportFilename=report \
-                  --exit
+                node ./node_modules/mocha/bin/mocha.js \
+                --reporter mochawesome \
+                --reporter-options reportDir=reports,reportFilename=report \
+                --exit

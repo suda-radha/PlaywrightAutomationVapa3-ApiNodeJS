@@ -49,6 +49,26 @@ app.delete('/resource/:id', (req, res) => {
   }
 })
 
+//get secure resource using authentication
+app.get('/secure-resource', (req, res) => {
+  const authHeader = req.headers['authorization'];
+  if (authHeader === 'Bearer valid_token') {
+    res.status(200).json({ "message": "This is secure data" });
+  }else {
+    res.status(401).json({ error: 'Unauthorized - authentication required' });
+  }
+});
+
+app.get('/xml-response', (req, res) => {
+  const xmlData = `<resource>
+                      <name>XML Resource</name>
+                   </resource>`;
+  res.set('Content-Type', 'application/xml');
+  res.status(200).send(xmlData);
+});
+
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

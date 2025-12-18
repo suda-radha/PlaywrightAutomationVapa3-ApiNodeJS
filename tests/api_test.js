@@ -36,11 +36,37 @@ describe('API Tests', () => {
         expect(res.body).to.have.property('message', 'Resource deleted');
     })
 
-    it("should return 404 when deleting not delete a resource", async () => {
+    it("should return 404 when deleting a non-existant resource", async () => {
         const resourceIdToDelete = 80;
         const res = await request(app)
             .delete(`/resource/${resourceIdToDelete}`)
         expect(res.status).to.equal(404);
         expect(res.body).to.have.property('error', 'Resource not found');
+    })
+
+
+    it("should access secure resource with valid token", async () => {
+        const res = await request(app)
+            .get('/secure-resource')
+            .set('Authorization', 'Bearer valid_token');
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('message', 'This is secure data');
+    })
+
+    it("should deny access to secure resource with invalid token", async () => {
+        const res = await request(app)
+            .get('/secure-resource')
+            .set('Authorization', 'Bearer invalid_token');
+        expect(res.status).to.equal(401);
+        expect(res.body).to.have.property('error', 'Unauthorized - authentication required');
+    })
+
+    it("should return XML response", async () => {
+        const res = await request(app)
+            .get('/xml-response')
+        expect(res.status).to.equal(200);
+        expect(res.headers['content-type']).to.include('application/xml');
+        expect(res.text).to.include('<resource>');
+        expect(res.text).to.include('<name>XML Resource</name>');
     })
 })

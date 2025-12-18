@@ -41,6 +41,6 @@ describe('API Tests', () => {
         const res = await request(app)
             .delete(`/resource/${resourceIdToDelete}`)
         expect(res.status).to.equal(404);
-        expect(res.body).to.have.property('message', 'Resource not found');
+        expect(res.body).to.have.property('error', 'Resource not found');
     })
 })

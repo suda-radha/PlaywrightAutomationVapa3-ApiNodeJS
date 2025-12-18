@@ -5,10 +5,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Set up Node.js
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
                 node-version: '16'
 
@@ -21,7 +21,13 @@ jobs:
             - name: Run tests
               #run: npx mocha --reporter mochawesome --reporter-options reportDir=reports, reportFilename=report --exit
               run: |
-                node ./node_modules/mocha/bin/mocha.js tests \ 
+                node ./node_modules/mocha/bin/mocha.js tests \
                 --reporter mochawesome \
                 --reporter-options reportDir=reports,reportFilename=report \
                 --exit
+
+            - name: Upload Test Report
+              uses: actions/upload-artifact@v3
+              with:
+                    name: mocha-test-report
+                    path: reports
